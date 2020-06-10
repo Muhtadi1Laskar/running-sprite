@@ -22,10 +22,10 @@ class Run{
     }
 
     jump(){
-        // if(this.spriteY === height-200){
-            this.velocity = -40;
+        if(this.spriteY === height-200){
+            this.velocity = -50;
             this.spriteX += .9;
-        // }
+        }
     }
 
     move(){
