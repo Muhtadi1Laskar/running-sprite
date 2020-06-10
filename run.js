@@ -1,22 +1,24 @@
 class Run{
     constructor(){
         this.currentIndex = 1;
-        this.spriteX = 40;
+        this.spriteX = 10;
         this.spriteY = height-300;
 
+        this.robot_size = 190;
+
         this.velocity = 0;
-        this.gravity = 2;
+        this.gravity = 5;
     }
 
     update(){
         this.currentIndex++;
-        if(this.currentIndex > 12){
+        if(this.currentIndex > 7){
             this.currentIndex = 1;
         }
     }
 
     jump(){
-        this.velocity = -25;
+        this.velocity = -35;
     }
 
     move(){
@@ -26,6 +28,6 @@ class Run{
     }
 
     draw(){
-        image(images[this.currentIndex], this.spriteX, this.spriteY, 150, 150);
+        image(images[this.currentIndex], this.spriteX, this.spriteY, this.robot_size, this.robot_size);
     }
 }
