@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1000, 450);
+  createCanvas(1000, 550);
   frameRate(20);
   run = new Run();
   
