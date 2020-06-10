@@ -15,10 +15,16 @@ class Run{
         if(this.currentIndex > 7){
             this.currentIndex = 1;
         }
+        this.jumpIndex++;
+        if(this.jumpIndex > 9){
+            this.jumpIndex = 1;
+        }
     }
 
     jump(){
-        this.velocity = -35;
+        if(this.spriteY === height-300){
+            this.velocity = -35;
+        }
     }
 
     move(){
@@ -28,6 +34,6 @@ class Run{
     }
 
     draw(){
-        image(images[this.currentIndex], this.spriteX, this.spriteY, this.robot_size, this.robot_size);
+        image(running_images[this.currentIndex], this.spriteX, this.spriteY, this.robot_size, this.robot_size);
     }
 }

@@ -1,11 +1,12 @@
-let images = [];
+let running_images = [];
 let run;
 
 function preload(){
   for(let i=1;i<=8;i++){
     // images.push(loadImage(`images/skeleton-03_run_${i}.png`));
-    images.push(loadImage(`run-mascot/${i}-Run.png`))
+    running_images.push(loadImage(`run-mascot/run/${i}-Run.png`));
   }
+
 }
 
 function setup(){
