@@ -12,7 +12,7 @@ let bot_check;
 function preload() {
   obs_image = loadImage(`run-mascot/obstacle/2-obs.png`);
   for (let i = 1; i <= 16; i++) {
-    running_images.push(loadImage(`run-mascot/robo-run/r_run_${i}.png`))
+    running_images.push(loadImage(`run-mascot/robo-run/r_run_${i}.png`));
   }
 }
 
@@ -22,7 +22,6 @@ function setup() {
   frameRate(35);
   run = new Run();
 }
-
 
 function touchStarted() {
   run.jump();
@@ -48,11 +47,14 @@ function draw() {
   run.draw();
   run.move();
 
-  obstacle.map(r => {
+  obstacle.map((r) => {
     r.draw();
     r.update();
     let collusion = r.detect_collusion(run);
     if (collusion) {
+      textSize(50);
+      fill("white");
+      text("Game Over!!!", width / 2 - 150, height / 2);
       noLoop();
     }
     if (bot_check.checked) {
@@ -61,7 +63,5 @@ function draw() {
         run.jump();
       }
     }
-
-
-  })
+  });
 }
