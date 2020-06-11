@@ -33,7 +33,7 @@ function touchStarted() {
 }
 
 function draw() {
-  background("#ff9595");
+  background("#3fc5f0");
 
   if (frameCount % 6 == 0) {
     score++;
@@ -55,11 +55,12 @@ function draw() {
   obstacle.map((r) => {
     r.draw();
     r.update();
+
     let collusion = r.detect_collusion(run);
     if (collusion) {
       textSize(50);
       fill("white");
-      text("Game Over !!!", width / 2 - 150, height / 2-50);
+      text("Game Over !!!", width / 2 - 150, height / 2 - 50);
       text("Click Again to restart", width / 2 - 225, height / 2 + 50);
       restart = true;
       noLoop();

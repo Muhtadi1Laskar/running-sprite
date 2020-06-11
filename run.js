@@ -7,6 +7,7 @@ class Run{
         this.robot_size = 100;
 
         this.velocity = 0;
+        this.lift = -50;
         this.gravity = 7;
     }
 
@@ -15,15 +16,11 @@ class Run{
         if(this.currentIndex > 7){
             this.currentIndex = 1;
         }
-        this.jumpIndex++;
-        if(this.jumpIndex > 15){
-            this.jumpIndex = 1;
-        }
     }
 
     jump(){
         if(this.spriteY === height-120){
-            this.velocity = -50;
+            this.velocity = this.lift;
         }
     }
 
