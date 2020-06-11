@@ -8,6 +8,7 @@ let obstacle = [];
 let score = 0;
 
 let bot_check;
+let restart = false;
 
 function preload() {
   obs_image = loadImage(`run-mascot/obstacle/2-obs.png`);
@@ -25,6 +26,9 @@ function setup() {
 
 function touchStarted() {
   run.jump();
+  if (restart){
+    loop();
+  }
 }
 
 function draw() {
@@ -55,6 +59,8 @@ function draw() {
       textSize(50);
       fill("white");
       text("Game Over!!!", width / 2 - 150, height / 2);
+      text("Click Again to restart", width/2-225, height/2+100);
+      restart = true;
       noLoop();
     }
     if (bot_check.checked) {
