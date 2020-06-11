@@ -5,36 +5,63 @@ let run;
 let obs_image;
 let obstacle = [];
 
+let score = 0;
+
+let bot_check;
+
 function preload() {
-  obs_image = loadImage(`run-mascot/obstacle/4-obs.png`);
-  for (let i = 1; i <= 8; i++) {
-    running_images.push(loadImage(`run-mascot/run/${i}-Run.png`));
+  obs_image = loadImage(`run-mascot/obstacle/2-obs.png`);
+  for (let i = 1; i <= 16; i++) {
+    running_images.push(loadImage(`run-mascot/robo-run/r_run_${i}.png`))
   }
 }
 
 function setup() {
-  createCanvas(1000, 550);
-  frameRate(20);
+  createCanvas(1000, 400);
+  bot_check = select("#box1").elt;
+  frameRate(35);
   run = new Run();
-  
 }
 
 
 function touchStarted() {
-    run.jump();
+  run.jump();
 }
 
 function draw() {
   background("#ff9595");
-  if(random(1) < 0.01){
+
+  if (frameCount % 4 == 0) {
+    score++;
+  }
+
+  if (random(1) < 0.75 && frameCount % 30 == 0) {
     obstacle.push(new Obstacle());
   }
+
+  textSize(32);
+  fill("white");
+  text("Score:", width - 200, 40);
+  text(score, width - 100, 40);
 
   run.update();
   run.draw();
   run.move();
-  for(let t of obstacle){
-    t.draw();
-    t.update();
-  }
+
+  obstacle.map(r => {
+    r.draw();
+    r.update();
+    let collusion = r.detect_collusion(run);
+    if (collusion) {
+      noLoop();
+    }
+    if (bot_check.checked) {
+      let distance = r.calculate_distance();
+      if (distance <= 150) {
+        run.jump();
+      }
+    }
+
+
+  })
 }
