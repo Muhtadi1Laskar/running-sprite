@@ -26,15 +26,16 @@ function setup() {
 
 function touchStarted() {
   run.jump();
-  if (restart){
+  if (restart) {
     loop();
+    score = 0;
   }
 }
 
 function draw() {
   background("#ff9595");
 
-  if (frameCount % 4 == 0) {
+  if (frameCount % 6 == 0) {
     score++;
   }
 
@@ -58,11 +59,12 @@ function draw() {
     if (collusion) {
       textSize(50);
       fill("white");
-      text("Game Over!!!", width / 2 - 150, height / 2);
-      text("Click Again to restart", width/2-225, height/2+100);
+      text("Game Over !!!", width / 2 - 150, height / 2-50);
+      text("Click Again to restart", width / 2 - 225, height / 2 + 50);
       restart = true;
       noLoop();
     }
+
     if (bot_check.checked) {
       let distance = r.calculate_distance();
       if (distance <= 150) {
