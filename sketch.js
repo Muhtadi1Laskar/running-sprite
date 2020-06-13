@@ -2,18 +2,19 @@ let bg;
 let running_images = [];
 let run;
 
-let obs_image;
 let obstacle = [];
-
+let obstacles = [];
 let score = 0;
 
 let bot_check;
 let restart = false;
 
 function preload() {
-  obs_image = loadImage(`run-mascot/obstacle/2-obs.png`);
   for (let i = 1; i <= 16; i++) {
     running_images.push(loadImage(`run-mascot/robo-run/r_run_${i}.png`));
+  }
+  for(let i=0;i<=61;i++){
+    obstacles.push(loadImage(`run-mascot/run//w_0${i}.png`));
   }
 }
 
@@ -26,20 +27,22 @@ function setup() {
 
 function touchStarted() {
   run.jump();
+  
   if (restart) {
     loop();
     score = 0;
+    restart = false;
   }
 }
 
 function draw() {
   background("#3fc5f0");
 
-  if (frameCount % 6 == 0) {
+  if (frameCount % 4 == 0) {
     score++;
   }
 
-  if (random(1) < 0.75 && frameCount % 30 == 0) {
+  if (random(1) < 0.9 && frameCount % 40 == 0) {
     obstacle.push(new Obstacle());
   }
 
@@ -47,6 +50,8 @@ function draw() {
   fill("white");
   text("Score:", width - 200, 40);
   text(score, width - 100, 40);
+  strokeWeight(3);
+  line(1, 382, 1000, 382);
 
   run.update();
   run.draw();
@@ -68,7 +73,7 @@ function draw() {
 
     if (bot_check.checked) {
       let distance = r.calculate_distance();
-      if (distance <= 150) {
+      if (distance <= 100) {
         run.jump();
       }
     }

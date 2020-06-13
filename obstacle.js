@@ -1,14 +1,19 @@
 class Obstacle {
     constructor() {
+        this.index = 1;
         this.x = width;
         this.y = height - 70;
         this.size = 50;
 
-        this.speed = -30;
+        this.speed = 10;
     }
 
     update() {
-        this.x += this.speed;
+        this.x -= this.speed;
+        this.index++;
+        if(this.index > 60){
+            this.index = 1;
+        }
     }
 
     calculate_distance() {
@@ -20,11 +25,11 @@ class Obstacle {
     }
 
     detect_collusion(r) {
-        return r.spriteX + 70 >= this.x && r.spriteX <= this.x + this.size && r.spriteY + 60 >= this.y && r.spriteY <= this.y + this.size;
+        return r.spriteX + 70 >= this.x && r.spriteX <= this.x + this.size && r.spriteY + 60 >= this.y && r.spriteY <= this.y - 6;
     }
 
     draw() {
-        image(obs_image, this.x, this.y, this.size, this.size);
+        image(obstacles[this.index], this.x, this.y, this.size, this.size);
         // fill(255, 50);
         // rect(this.x, this.y, this.size, this.size);
     }

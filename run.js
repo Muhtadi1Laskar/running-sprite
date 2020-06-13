@@ -7,8 +7,8 @@ class Run{
         this.robot_size = 100;
 
         this.velocity = 0;
-        this.lift = -50;
-        this.gravity = 7;
+        this.lift = -41;
+        this.gravity = 5;
     }
 
     update(){
